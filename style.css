@@ -1,0 +1,1039 @@
+body {
+    margin: 0;
+    background-color: white;
+    color: #eee;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Navbar Start */
+.navbar {
+    background: rgb(237,237,237,0.6);
+    backdrop-filter: blur(10px);
+    height: 80px;
+    margin: 20px;
+    border-radius: 16px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    animation: fadeInDown 0.8s ease;
+}
+
+/* Brand Animation */
+.navbar-brand {
+    font-weight: 500;
+    color: #209970;
+    font-size: 24px;
+    transition: 0.3s color;
+    animation: slideInLeft 0.8s ease;
+}
+
+/* Add to Cart Icon and Search Icon Animation */
+.add-to-cart-icon, .search-icon {
+    font-size: 20px;
+    color: #209970;
+    transition: 0.3s color;
+    cursor: pointer;
+    animation: bounceIn 1s ease;
+}
+
+.add-to-cart-icon:hover, .search-icon:hover {
+    color: #226383;
+    transform: scale(1.1);
+    transition: 0.3s transform;
+}
+
+/* Search Container */
+.search-container {
+position: relative;
+display: flex;
+align-items: center;
+margin-left: 0;
+}
+
+/* Search Input */
+.search-input {
+padding: 8px 1px 8px 20px; /* Adjust padding to accommodate cross button */
+border-radius: 50px;
+border: 1px solid #ccc;
+width: 0;
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.5s ease, visibility 0.5s ease, width 0.5s ease;
+font-size: 14px;
+display: inline-block; /* Ensures that the input element behaves correctly */
+position: absolute; /* Absolute positioning to prevent affecting other elements */
+top: 50%; /* Center vertically */
+transform: translateY(-50%); /* Center vertically */
+}
+
+/* Move search bar towards the left when active */
+.search-input.active {
+opacity: 1;
+visibility: visible;
+width: 220px; /* Width when active */
+transform: translateX(-10px) translateY(-50%); /* Adjust this value to move the search bar left */
+}
+
+/* Close Button Inside Search Bar */
+.close-search {
+position: absolute;
+right:-160px; /* Adjust based on your layout */
+top: 50%;
+transform: translateY(-50%);
+background: none;
+border: none;
+font-size: 16px;
+color: #666;
+cursor: pointer;
+transition: color 0.3s ease;
+opacity: 0; /* Hide initially */
+visibility: hidden; /* Hide initially */
+}
+
+.search-input.active + .close-search {
+opacity: 1;
+visibility: visible; /* Show when search input is active */
+}
+
+.close-search:hover {
+color: #000;
+}
+
+/* Login and Signup Buttons */
+.login-button, .signup-button {
+    background-color: #209970;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s background-color, 0.3s transform;
+    animation: slideInRight 0.8s ease;
+}
+
+.login-button:hover, .signup-button:hover {
+    background-color: #226383;
+    transform: scale(1.1);
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+    animation: fadeIn 0.8s ease;
+}
+
+.navbar-toggler:focus, .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Nav Link Hover Effect */
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s, transform 0.3s;
+    animation: fadeInUp 0.8s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.offcanvas {
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust the transparency level as needed */
+}
+
+.offcanvas-header {
+    background-color: transparent;
+    border-bottom: none; /* Remove border if you want to have a seamless look */
+}
+
+.offcanvas-body {
+    padding: 1rem; /* Adjust padding if necessary */
+}
+
+.add-to-cart-icon {
+    position: relative;
+}
+
+#cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Cart Menu Styles */
+#cartMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#cartMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cartMenu li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#cartMenu li:last-child {
+    border-bottom: none;
+}
+
+#cartMenu .empty-cart {
+    padding: 10px;
+    text-align: center;
+    color: #888;
+}
+.item-details {
+    font-size: 14px;
+    color: #555;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #000;
+}
+
+/* Nav Link Underline Animation */
+@media (min-width: 991px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #209970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before, .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Navbar Ends */
+
+/* 1st part Start */
+.container.custom-container {
+    max-width: 1400px; /* Adjust to your preferred width */
+    width: 100%;
+    height: 500px;
+    background-image: url(header-bg.jpg);
+     background-size: cover;
+background-position: center;
+border-radius: 15px; /* Adjust the value for more or less roundness */
+overflow: hidden; /* Ensure content does not overflow beyond the border-radius */
+}
+
+
+.image, .text {
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 1s forwards;
+    top: 100px;
+}
+
+.text {
+    transform: translateX(-100%);
+    animation: slideInText 1s forwards;
+    color: black;
+}
+
+.image {
+    animation-delay: 0s;
+ 
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInText {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.text h1, .text p {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: textAppear 1s ease forwards;
+}
+
+.text h1 {
+    animation-delay: 0.5s;
+}
+
+.text p {
+    animation-delay: 1s;
+}
+
+.img-fluid {
+width: 100%; /* Adjust as needed */
+height: auto; /* Maintain aspect ratio */
+}
+
+@keyframes textAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .text, .image {
+        transform: translateX(0);
+    }
+}
+
+/* 1st part ends */
+
+
+
+/* 2nd part Start */
+.custom-slideshow {
+    width: 100%; 
+    overflow: hidden; /* Ensures no overflow */
+}
+
+.custom-slideshow .slides {
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.custom-slideshow .slide {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    opacity: 0;
+    animation: slide-show 16s infinite; /* Total duration adjusted for 4 slides */
+}
+
+.custom-slideshow .slide-1 {
+    animation-delay: 0s; /* 4 seconds delay for second image */
+}
+
+.custom-slideshow .slide-2 {
+    animation-delay: 4s; /* 4 seconds delay for second image */
+}
+
+.custom-slideshow .slide-3 {
+    animation-delay: 8s; /* 8 seconds delay for third image */
+}
+
+.custom-slideshow .slide-4 {
+    animation-delay: 12s; /* 12 seconds delay for fourth image */
+}
+
+.custom-slideshow .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes slide-show {
+    0% {
+        opacity: 0;
+    }
+    
+    10% {
+        opacity: 1;
+    }
+    25%, 35% {
+        opacity: 1;
+        transform: scale(1.08); /* Small zoom effect for visual appeal */
+    }
+    45% {
+        opacity: 0;
+    }
+}
+
+/* Style the overlay to be positioned over the image */
+.overlay {
+    padding: 20px; /* Padding around the text and button */
+    color: #fff; /* White text */
+    max-width: 80%; /* Maximum width of the overlay */
+    text-align: center; /* Center-align text and button */
+    opacity: 1; /* Ensure overlay is visible */
+    z-index: 1; /* Ensure overlay is on top of the image */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay h3, .overlay p, .overlay .btn {
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Default transition */
+}
+
+/* Specific fade-in timings */
+.fade-in-heading {
+    transition-delay: 0.5s;
+}
+
+.fade-in-paragraph {
+    transition-delay: 1s;
+}
+
+.fade-in-button {
+    transition-delay: 1.5s;
+}
+
+/* Button styling */
+.btn-primary {
+    cursor: pointer; /* Pointer cursor on button */
+    transition: background-color 0.3s, transform 0.3s; /* Transition effects */
+    text-decoration: none; /* Remove underline from link */
+    padding: 10px 20px; /* Adjust button padding */
+    border-radius: 5px; /* Rounded corners for the button */
+    display: inline-block; /* Ensure the button is inline */
+    position: relative; /* Ensure button positioning */
+    z-index: 2; /* Ensure button is on top of the overlay */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Add some space between elements */
+.overlay h3 {
+    margin-bottom: 10px; /* Space between heading and paragraph */
+}
+
+.overlay p {
+    margin-bottom: 10px; /* Space between paragraph and button */
+}
+
+
+/* 2nd part ends */
+
+
+/* 3rd part Start */
+.container .can {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Updated heading styles */
+.heading h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #ff7f50, #1e90ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition */
+    font-weight: bold;
+}
+
+.can .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Card width adjusts to column width */
+    margin: auto; /* Center the card horizontally */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.can .card:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.can .card-img {
+    position: relative;
+}
+
+.default-img {
+    width: 100%;
+    height: 250px; /* Increased height for image */
+    object-fit: cover; /* Ensures image covers the area */
+}
+
+.card-body {
+    padding: 0.5rem; /* Reduced padding */
+}
+
+.card-text-button {
+    padding: 0.5rem; /* Reduced padding */
+}
+
+.card-text-button p {
+    margin: 0.5rem 0;
+}
+
+.card-text-button p:first-of-type {
+    font-size: 0.9rem; /* Smaller font size for location */
+    color: #f1c40f; /* Yellow color for location text */
+}
+
+.card-text-button p:first-of-type i {
+    color: #f1c40f; /* Yellow color for location icon */
+}
+
+.card-text-button p:nth-of-type(2) {
+    font-size: 0.8rem; /* Smaller font size for description */
+}
+
+.card-text-button .rating {
+    font-size: 0.9rem; /* Smaller font size for rating */
+}
+
+.card-text-button .star {
+    color: #dcdcdc;
+    font-size: 0.9rem; /* Smaller font size for stars */
+}
+
+.card-text-button .star.filled {
+    color: #ffd700;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.1rem; /* Slightly smaller font size for price */
+}
+
+.custom-btn {
+    margin-top: 0.5rem; /* Reduced margin */
+    background-color: #28a745; /* Default button color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem; /* Reduced padding */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.custom-btn:hover {
+    background-color: transparent; /* Transparent background on hover */
+    color: #28a745; /* Button text turns green */
+    border: 2px solid #28a745; /* Green border */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.btn-text {
+    font-size: 1rem;
+}
+
+
+
+/* 3rd part ends */
+
+
+
+/* 4th part Start */
+.services-heading {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 2rem; /* Default font size */
+    text-align: center;
+    flex-wrap: wrap; /* Wrap letters to next line on small screens */
+  }
+
+  .letter {
+    display: inline-block;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    flex: 0 0 auto; /* Make each letter not stretch */
+  }
+
+  /* Different styles for each letter */
+  .letter-1 {
+    background-color: #ff6347; /* Tomato */
+    border-radius: 50%; /* Circle background */
+  }
+
+  .letter-2 {
+    background-color: #4682b4; /* Steel Blue */
+    border-radius: 5px; /* Square background */
+  }
+
+  .letter-3 {
+    background-color: #32cd32; /* Lime Green */
+    border-radius: 50%; /* Circle background */
+  }
+
+  .letter-4 {
+    background-color: #ff4500; /* Orange Red */
+    border-radius: 5px; /* Square background */
+  }
+
+  .letter-5 {
+    background-color: #9400d3; /* Dark Violet */
+    border-radius: 50%; /* Circle background */
+  }
+
+  .letter-6 {
+    background-color: #ffd700; /* Gold */
+    border-radius: 5px; /* Square background */
+  }
+
+  .letter-7 {
+    background-color: #00bfff; /* Deep Sky Blue */
+    border-radius: 50%; /* Circle background */
+  }
+
+  .letter-8 {
+    background-color: #ff1493; /* Deep Pink */
+    border-radius: 5px; /* Square background */
+  }
+
+  /* Hover effect */
+  .letter:hover {
+    transform: scale(1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Responsive font size */
+  @media (max-width: 992px) {
+    .services-heading {
+      font-size: 1.5rem; /* Medium screens (tablets) */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-heading {
+      font-size: 1.2rem; /* Small screens (phones) */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .services-heading {
+      font-size: 1rem; /* Extra small screens */
+    }
+  }
+
+  .box{
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    opacity: 0;
+    transform: translateY(50px); /* Start slightly lower */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+}
+
+/* When the box becomes visible, apply the animation */
+.box.show {
+    opacity: 1;
+    transform: translateY(0); /* Move to the original position */
+}
+
+
+/* Adding a different transition effect on hover for services */
+.our-services:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05); /* Slight zoom on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.our-services{
+    margin-top: 75px;
+    padding-bottom: 30px;
+    padding: 0 60px;
+    min-height: 198px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 0 25px 0 rgba(20,27,202,.17)}
+
+.our-services .icon{
+    margin-bottom: -21px;
+    transform: translateY(-50%);
+    text-align: center}
+    
+.our-services:hover h4, .our-services:hover p{
+    color: #fff}
+    
+.speedup:hover{
+    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #fb0054 0%, #f55b2a 100%)}
+    
+.settings:hover{
+    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #34b5bf 0%, #210c59 100%)}
+    
+.privacy:hover{
+    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #3615e7 0%, #44a2f6 100%)}
+    
+.backups:hover{
+    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #fc6a0e 0%, #fdb642 100%)}
+    
+.ssl:hover{
+    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #8d40fb 0%, #5a57fb 100%)}
+    
+.database:hover{
+    box-shadow: 0 0 25px 0 rgba(20,27,201,.05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #27b88d 0%, #22dd73 100%)}
+
+
+  .our-services h4, .our-services p{
+    color: #000;
+  }
+
+  
+/* 4th part ends */
+
+
+/* 5th part start */
+  .con .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.con .card {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+    margin: 15px 0;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Start below */
+}
+
+.con .card.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Back to original position */
+}
+
+/* Rest of the CSS remains unchanged */
+
+
+.con .card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.con .card-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.con .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.con .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    transform: translateY(100%); /* Hidden initially */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition */
+    z-index: 2;
+    opacity: 0; /* Hidden initially */
+}
+
+.con .card:hover .card-overlay {
+    transform: translateY(0); /* Slide up on hover */
+    opacity: 1; /* Show the overlay on hover */
+}
+
+.card-texts {
+    text-align: center; /* Centers the text horizontally */
+    margin-bottom: 20px; /* Adds spacing below the text */
+    color: white; /* Ensures text is visible on dark background */
+}
+
+.card-texts h2 {
+    margin: 0; /* Removes default margin around the heading */
+    font-size: 24px; /* Adjust font size as needed */
+    color: yellow;
+}
+
+.card-texts p {
+    margin: 0; /* Removes default margin around the paragraph */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+.card-button {
+    text-align: center;
+}
+
+.card-button button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.card-button button:hover {
+    background-color: #0056b3;
+}
+
+.services-head {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 2rem; /* Default font size */
+    text-align: center;
+    flex-wrap: wrap; /* Wrap letters to next line on small screens */
+  }
+
+  .let {
+    display: inline-block;
+    padding: 15px;
+    color: yellow;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    flex: 0 0 auto; /* Make each letter not stretch */
+  }
+      /* Different styles for each letter */
+  .let-1 {
+    background-color: lightsalmon; /* Tomato */
+    border-radius: 5px; /* Circle background */
+  }
+
+  .let-2 {
+    background-color: lightsalmon; /* Steel Blue */
+    border-radius: 5px; /* Square background */
+  }
+
+  .let-3 {
+    background-color: lightsalmon; /* Lime Green */
+    border-radius: 5px; /* Circle background */
+  }
+
+  .let-4 {
+    background-color: lightsalmon; /* Orange Red */
+    border-radius: 5px; /* Square background */
+  }
+
+  .let-5 {
+    background-color: lightsalmon; /* Dark Violet */
+    border-radius: 5px; /* Circle background */
+  }
+
+  .let-6 {
+    background-color: lightsalmon; /* Gold */
+    border-radius: 5px; /* Square background */
+  }
+
+  .let-7 {
+    background-color: lightsalmon; /* Deep Sky Blue */
+    border-radius: 5px; /* Circle background */
+  }
+  
+  
+/* 5th part ends */
+
+
+/* 6th part Start */
+        .booking {
+            background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(image/booking.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 40px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        /* Heading Styling */
+        .booking .text-section h1, .booking .text-section h6 {
+            margin: 0;
+        }
+
+        /* Heading Styling */
+        .booking .text-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph Styling */
+        .booking .text-section p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .booking .btn-outline-light {
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .booking .btn-outline-light:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Form Inputs Styling */
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: transparent;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            color: #fff;
+        }
+
+        
+
+        /* Label Styling */
+        .form-group label {
+            color: #ccc;
+        }
+
+        /* Button Styling */
+        .btn-outline-light.w-100 {
+            width: calc(100% + 20px);
+        }
+
+        /* Form Control Focus Styling */
+        .form-control:focus {
+            border-color: whitesmoke;
+            box-shadow: 0 0 0 0.25rem rgba(0, 0, 255, 0.25); /* Blue shadow */
+            outline: none; /* Remove default outline */
+        }
+
+        .form-select:focus {
+            border-color: whitesmoke;
+            box-shadow: 0 0 0 0.25rem rgba(0, 0, 255, 0.25); /* Blue shadow */
+            outline: none; /* Remove default outline */
+        }
+        #datetime {
+    background-color: transparent;
+    color: white;
+}
+
+
+/* 6th part ends */
+
+

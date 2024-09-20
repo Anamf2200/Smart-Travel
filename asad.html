@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Review</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+      
+    <style>
+
+
+/* tour review work  */
+
+        .container-fluid {
+            width: 100%;
+            height: 400px;
+            background-image: url(assets/Moody\ Mexico\ city\ wall\ print_Canvas\ wall\ art\ of\ woods.jfif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: brightness(100%);
+            display: flex;
+            justify-content: center;
+        }
+
+        .div-1 {
+            width: 400px;
+            color: #fff;
+            background: transparent;
+            backdrop-filter: blur(5px);
+
+        }
+
+        .div-1 h3 {
+            text-align: center;
+            margin: 10px 0px 30px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .div-1 form {
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        .div-1 form input {
+            padding: 3px;
+            margin: 10px;
+            background-color: transparent;
+            border-radius: 0px;
+            line-height: 30px;
+            border: none;
+            border-bottom: 1px solid white;
+        }
+
+        .div-1 form textarea {
+
+            margin: 10px;
+            background-color: transparent;
+            border-radius: 0px;
+            /* line-height: 30px; */
+            border: none;
+            border-bottom: 1px solid white;
+        }
+
+        form button {
+            padding: 15px;
+            background: black;
+            color: #fff;
+            font-size: 13px;
+            border: 1PX solid black;
+            backdrop-filter: blur(10px);
+            outline: none;
+            cursor: pointer;
+            width: 150px;
+            margin: 5px auto 0;
+            border-radius: 0px;
+            letter-spacing: 3px;
+        }
+
+
+        form button:hover {
+            transform: translate(3s);
+
+        }
+
+        input::placeholder {
+            color: white;
+
+        }
+
+        textarea::placeholder {
+            color: rgb(255, 255, 255);
+        }
+
+       
+    </style>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script src="index.js"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("g7FP1Mr-3EtwlzXKo");  // Initialize EmailJS with your user ID
+    })();
+</script>
+</head>
+
+<body>
+
+    <!-- tour review Html  -->
+
+    <h1 style="text-align: center; letter-spacing: 4px; text-transform: uppercase;"> <b>Tour Review </b> </h1>
+
+    <div class="container-fluid">
+        <div class="div-1">
+            <h3>pakage detail</h3>
+            <p>
+                <b> 1. Destination Overview </b> <br>
+                Highlight the destination(s) included in the package, giving a brief description of the location,
+                popular attractions, and what makes it unique. <br>
+
+
+                <b>2. Inclusions & Exclusions </b> <br>
+                Clearly outline what's included in the package (flights, accommodation, meals, transfers, guided tours,
+                etc.) and what's excluded (optional excursions, tips, travel insurance). <br>
+
+
+
+                <b> 3. Terms & Conditions </b> <br>
+                Provide important terms related to cancellations, changes, refunds, and booking conditions (such as
+                deposit requirements or payment plans). <br>
+            </p>
+        </div>
+        <div class="div-1">
+            <h3>rate trip</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam eum doloremque nisi dolores vero porro
+                fuga aut, omnis nam excepturi, rem sapiente mollitia neque culpa tenetur commodi? Soluta, labore rem.
+            </p>
+        </div>
+        <div class="div-1">
+            <h3>FeedBack</h3>
+            <form>
+                <input type="text" id="name" placeholder="Enter Your Name" required>
+                <input type="email" id="email" placeholder="Enter Your Email" required>
+                <input type="password" id="password" placeholder="Enter Your Password" required>
+                <textarea id="message" rows="3" placeholder="How's Your Traveling Experience?"></textarea>
+                <button class="sub" onclick="email()">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+ <!-- tour review  js  -->
+ 
+    <!-- <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "hafizasadsiddiqui@gmail.com",
+                Password: "",
+                To: 'hafizasadsiddiqui@gmail.com',
+                From: document.getElementById("email").value,
+                Subject: "New FeedBack  ",
+                Body: "Name:" + document.getElementById("name").value
+                    + " <br> Email:" + document.getElementById("email").value
+                    + " <br> Phone Number:" + document.getElementById("phone").value
+                    + " <br> Message:" + document.getElementById("message").value
+
+
+            }).then(
+                message => alert("Message Sent Succesfully")
+            );
+        }  -->
+
+      
+    </script>
+   
+</body>
+
+</html>
